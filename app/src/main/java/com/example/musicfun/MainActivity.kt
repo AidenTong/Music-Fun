@@ -7,9 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.musicfun.adapter.CategoryAdapter
 import com.example.musicfun.databinding.ActivityMainBinding
-import com.example.musicfun.models.CategoryModel
 
 class MainActivity : AppCompatActivity() {
 

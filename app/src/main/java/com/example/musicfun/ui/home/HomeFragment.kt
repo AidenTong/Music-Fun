@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.musicfun.GridSpaceItemDecoration
 import com.example.musicfun.R
 import com.example.musicfun.adapter.CategoryAdapter
+import com.example.musicfun.adapter.NewSongAdapter
 import com.example.musicfun.adapter.PopularSongAdapter
 import com.example.musicfun.databinding.FragmentHomeBinding
 import com.example.musicfun.models.CategoryModel
@@ -24,14 +28,19 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var popularSongAdapter: PopularSongAdapter
+    private lateinit var newSongAdapter: NewSongAdapter
+    private val songList: List<SongModel> = listOf(
+        SongModel("", "Love Story", R.drawable.love_story, "" )
+    )
     private val categoryList: List<CategoryModel> = listOf(
         CategoryModel("English", R.drawable.english ),
         CategoryModel("Mandarin",  R.drawable.mandarin),
         CategoryModel("K-pop",  R.drawable.k_pop),
         CategoryModel("Canto-pop",  R.drawable.conto_pop),
     )
-    private val songList: List<SongModel> = listOf(
-        SongModel("", "Love Story", R.drawable.love_story, "" )
+    private val newSongsList: List<SongModel> = listOf(
+        SongModel("", "Love Story", R.drawable.english, "" ),
+        SongModel("", "Love Story", R.drawable.english, "" )
     )
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +59,7 @@ class HomeFragment : Fragment() {
         }
         setupCategoryRecyclerView(categoryList)
         setupPopularSongRecyclerView(songList)
+        setupNewSongRecyclerView(newSongsList)
         return root
     }
 
@@ -63,6 +73,14 @@ class HomeFragment : Fragment() {
         popularSongAdapter = PopularSongAdapter(songList)
         binding.popularSongsRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
         binding.popularSongsRecyclerView.adapter = popularSongAdapter
+
+    }
+    fun setupNewSongRecyclerView(newSongList : List<SongModel>){
+        newSongAdapter = NewSongAdapter(newSongList)
+        binding.newSongsRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.newSongsRecyclerView.adapter = newSongAdapter
+        binding.newSongsRecyclerView.addItemDecoration(GridSpaceItemDecoration(2, getResources().getDimensionPixelSize(
+            com.google.android.material.R.dimen.mtrl_card_spacing), true))
     }
     override fun onDestroyView() {
         super.onDestroyView()
