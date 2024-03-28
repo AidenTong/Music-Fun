@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.musicfun.R
 import com.example.musicfun.databinding.NewSongsRecyclerRowBinding
-import com.example.musicfun.databinding.PopularSongsRecyclerRowBinding
 import com.example.musicfun.models.SongModel
 
 //import com.google.firebase.firestore.FirebaseFirestore

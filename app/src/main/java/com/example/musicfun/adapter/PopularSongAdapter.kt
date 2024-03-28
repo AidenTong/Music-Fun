@@ -1,14 +1,17 @@
 package com.example.musicfun.adapter
 
+import android.R
 import android.view.LayoutInflater
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.view.animation.Animation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.musicfun.R
 import com.example.musicfun.databinding.PopularSongsRecyclerRowBinding
 import com.example.musicfun.models.SongModel
+
 
 //import com.google.firebase.firestore.FirebaseFirestore
 //import np.com.bimalkafle.musicstream.SongsListActivity
@@ -53,11 +56,11 @@ class PopularSongAdapter(private val songIdList : List<SongModel>) :
     }
 
     override fun getItemCount(): Int {
-        return songIdList.size
+        return Integer.MAX_VALUE
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindData(songIdList[position])
+        holder.bindData(songIdList[position % songIdList.size])
     }
 
 }

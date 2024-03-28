@@ -1,4 +1,4 @@
-package com.example.musicfun
+package com.example.musicfun.itemDecoration
 
 import android.graphics.Rect
 import android.view.View
@@ -21,4 +21,6 @@ class GridSpaceItemDecoration(
         outRect.top = if (position < spanCount) 0 else spacing
         outRect.bottom = spacing
     }
+
+
 }
