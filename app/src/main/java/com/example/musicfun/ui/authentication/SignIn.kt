@@ -1,5 +1,6 @@
 package com.example.musicfun.ui.authentication
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
@@ -39,6 +40,10 @@ class SignIn : AppCompatActivity() {
         }
 
         val btnSignUp = findViewById<Button>(R.id.btn_sign_up)
+        btnSignUp.setOnClickListener {
+            val intent = Intent(this@SignIn, SignUp::class.java)
+            startActivity(intent)
+        }
 
 
     }
