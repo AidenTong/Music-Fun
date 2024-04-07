@@ -21,7 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val btn = findViewById<Button>(R.id.get_started)
+
 //        btn.setOnClickListener{
 //            Intent(this)
 //        }

@@ -30,6 +30,7 @@
         android:layout_marginStart="35dp"
         android:layout_marginBottom="30dp"
         android:text="@string/app_description"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
