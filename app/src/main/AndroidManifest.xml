@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.musicfun.ui.authentication.SignIn"
+            android:label="Music Fun"
+            android:theme="@style/Theme.MusicFun">
+        </activity>
     </application>
-
 </manifest>

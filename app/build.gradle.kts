@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -50,6 +51,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("androidx.annotation:annotation:1.6.0")
     implementation("androidx.activity:activity:1.8.0")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
     testImplementation("junit:junit:4.13.2")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -1,6 +1,8 @@
 package com.example.musicfun
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.musicfun.databinding.ActivityMainBinding
+import com.example.musicfun.ui.authentication.SignIn
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,5 +38,10 @@ class MainActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //        navView.setupWithNavController(navController)
 
+        btn.setOnClickListener {
+            Intent(this@MainActivity, SignIn::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 }
