@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "525728621510",
+    "project_id": "comp4521-f7de0",
+    "storage_bucket": "comp4521-f7de0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525728621510:android:4029a969e68faf4f0f48c7",
+        "android_client_info": {
+          "package_name": "com.example.musicfun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525728621510-bujoq81ltvj6o8atti9mjk9adnng4ka8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.musicfun",
+            "certificate_hash": "b64bbe8b7cc57eaf33ccc526e8c75e3cc4b19d04"
+          }
+        },
+        {
+          "client_id": "525728621510-ivjvbn81nqrdv7viff2v65iis93avchj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvsL3zEaz7p_ObpMUZ12m6Z0mTKPwstAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525728621510-ivjvbn81nqrdv7viff2v65iis93avchj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
