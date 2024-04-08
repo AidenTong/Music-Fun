@@ -11,38 +11,49 @@
         android:id="@+id/txvSignUP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="14dp"
         android:text="@string/sign_up"
         android:textColor="@color/horizontal_line_color"
         android:textSize="40sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="18dp" />
+        app:layout_constraintBottom_toTopOf="@+id/txvSignUpDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/txvSignUpDescription"
-        android:layout_width="354dp"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="19dp"
         android:alpha="0.8"
         android:text="@string/sign_up_description"
         android:textColor="@color/black"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="85dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvSignUP" />
 
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/enter_your_full_name"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="39dp"
         android:background="@drawable/rounded_white_text_background"
         android:elevation="8dp"
+        android:ems="10"
+        android:hint="@string/enter_your_full_name"
+        android:inputType="text"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="174dp"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/txvSignUpDescription"
+        app:layout_constraintTop_toBottomOf="@+id/txvSignUpDescription" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
@@ -63,6 +74,8 @@
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="287dp"
         android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="228dp"
         android:background="@drawable/rounded_white_text_background"
         android:elevation="8dp"
         android:ems="10"
@@ -71,8 +84,9 @@
         android:singleLine="false"
         android:textColor="#000000"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="232dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
     <EditText
         android:id="@+id/editTextTextPasswordAgain"
@@ -93,37 +107,43 @@
         android:id="@+id/btn_sign_up"
         android:layout_width="164dp"
         android:layout_height="0dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginBottom="71dp"
         android:background="@color/blue_300"
         android:text="@string/confirm"
         android:textColor="@color/white"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="479dp" />
+        app:layout_constraintBottom_toTopOf="@+id/txvHaveAnAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <TextView
         android:id="@+id/txvHaveAnAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
         android:text="@string/have_an_account"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="598dp"
 
-        />
+        app:layout_constraintBottom_toTopOf="@+id/btn_sign_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sign_up" />
 
     <Button
         android:id="@+id/btn_sign_in"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5sp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="98dp"
         android:background="?android:attr/selectableItemBackground"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="@string/sign_in"
         android:textColor="#0A72BA"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="614dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txvHaveAnAccount"
+        app:layout_constraintTop_toBottomOf="@+id/txvHaveAnAccount" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

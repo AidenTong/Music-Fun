@@ -30,4 +30,5 @@
     <string name="phone_verification_message">An verification code has been sent your mobile phone</string>
     <string name="forget_password">Forget Password</string>
     <string name="forget_password_description">Please input your email to verify and reset password</string>
+    <string name="send">send</string>
 </resources>
