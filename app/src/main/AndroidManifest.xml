@@ -32,6 +32,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".HomeActivity">
+        </activity>
+        <activity
             android:name=".ui.authentication.SignIn"
             android:label="Music Fun"
             android:theme="@style/Theme.MusicFun" />

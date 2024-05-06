@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.musicfun.R
+import com.example.musicfun.HomeActivity
 
 class SignIn : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,11 @@ class SignIn : AppCompatActivity() {
             insets
         }
 
+        val btnSignIn = findViewById<Button>(R.id.btn_sign_in)
+        btnSignIn.setOnClickListener {
+            val intent = Intent(this@SignIn, HomeActivity::class.java)
+            startActivity(intent)
+        }
         val btnSignUp = findViewById<Button>(R.id.btn_sign_up)
         btnSignUp.setOnClickListener {
             val intent = Intent(this@SignIn, SignUp::class.java)
