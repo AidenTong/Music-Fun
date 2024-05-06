@@ -7,4 +7,88 @@
     android:layout_height="match_parent"
     tools:context=".ui.authentication.OTP">
 
+    <TextView
+        android:id="@+id/txv_OTP_verification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="49dp"
+        android:text="@string/OTP_verification"
+        android:textColor="@color/horizontal_line_color"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txv_OTP_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txv_OTP_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="57dp"
+        android:alpha="0.8"
+        android:text="@string/OTP_description"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_forget_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_OTP_verification" />
+
+    <ImageView
+        android:id="@+id/iv_forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_OTP_description"
+        app:srcCompat="@drawable/forget_password" />
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="247dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="98dp"
+        android:background="@color/blue_300"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="83dp"
+        android:background="@drawable/rounded_white_text_background"
+        android:elevation="8dp"
+        android:ems="10"
+        android:hint="@string/OTP"
+        android:inputType="number"
+        android:singleLine="true"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_forget_password" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="?android:attr/selectableItemBackground"
+        android:textColor="#0A72BA"
+        android:textSize="14sp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="502dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

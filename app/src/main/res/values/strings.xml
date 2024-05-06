@@ -6,7 +6,7 @@
     <string name="welcome">Welcome</string>
     <string name="app_description">Explore the latest hits on Music Fun!</string>
     <string name="disclaimer">Disclaimer</string>
-    <string name="disclaimer_content">This is a project used to learn Kotlin development for COMP 4521 at Hong Kong University of Science and Technology. The information, content, and functionality provided by this app are designed for educational and learning purposes. It is not intended for or suitable for business or commercial use.</string>
+    <string name="disclaimer_content">This is a project used to learn Kotlin development. The information, content, and functionality provided by this app are designed for educational and learning purposes. It is not intended for or suitable for business or commercial use.</string>
     <string name="get_started">Get Started</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_in_description">Please sign in to continue</string>
@@ -31,4 +31,8 @@
     <string name="forget_password">Forget Password</string>
     <string name="forget_password_description">Please input your email to verify and reset password</string>
     <string name="send">send</string>
+    <string name="OTP_verification">OTP Verification</string>
+    <string name="OTP">OTP</string>
+    <string name="OTP_description">Please enter your one-time password (OTP) to verify your account</string>
+    <string name="resend">Resend OTP</string>
 </resources>
