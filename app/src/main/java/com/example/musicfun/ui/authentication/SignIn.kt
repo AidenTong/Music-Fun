@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -16,37 +17,27 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.musicfun.R
 import com.example.musicfun.HomeActivity
+import com.example.musicfun.databinding.ActivitySignInBinding
 
 class SignIn : AppCompatActivity() {
+   lateinit var binding:ActivitySignInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_sign_in)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//
-        val actionBar = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
-        actionBar?.setCustomView(R.layout.actionbar_title)
-        val customView = actionBar?.customView
-        val backButton = customView?.findViewById<ImageButton>(R.id.backButton)
-        backButton?.setOnClickListener {
-            // Handle the click event for the backward button
-            onBackPressedDispatcher.onBackPressed()
+        binding=ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.btnSignIn.setOnClickListener {
+           /* val intent = Intent(this@SignIn, HomeActivity::class.java)
+            startActivity(intent)*/
+            var email = binding.editTextTextEmailAddress.text.toString()
+            var password = binding.editTextTextPassword.text.toString()
+            if (email.isNullOrEmpty()) {
+                Toast.makeText(this, "Please Input Email", Toast.LENGTH_LONG).show()
+            }
+            if (password.isNullOrEmpty()) {
+                Toast.makeText(this, "Please Input Password", Toast.LENGTH_LONG).show()
+            }
         }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        val btnSignIn = findViewById<Button>(R.id.btn_sign_in)
-        btnSignIn.setOnClickListener {
-            val intent = Intent(this@SignIn, HomeActivity::class.java)
-            startActivity(intent)
-        }
-        val btnSignUp = findViewById<Button>(R.id.btn_sign_up)
-        btnSignUp.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             val intent = Intent(this@SignIn, SignUp::class.java)
             startActivity(intent)
         }
