@@ -26,7 +26,7 @@ import com.google.firebase.ktx.Firebase
 class SignIn : AppCompatActivity() {
    lateinit var binding:ActivitySignInBinding
     private lateinit var auth: FirebaseAuth
-    val TAG = "jcy-SignUp"
+    val TAG = "jcy-SignIn"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivitySignInBinding.inflate(layoutInflater)
@@ -70,7 +70,10 @@ class SignIn : AppCompatActivity() {
             val intent = Intent(this@SignIn, SignUp::class.java)
             startActivity(intent)
         }
-
+        binding.btnForgetPassword.setOnClickListener {
+            val intent = Intent(this@SignIn, ForgetPassword::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -79,8 +82,8 @@ class SignIn : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this@SignIn, HomeActivity::class.java)
-            startActivity(intent)
+           // val intent = Intent(this@SignIn, HomeActivity::class.java)
+          //  startActivity(intent)
         }
     }
 

@@ -30,7 +30,7 @@
     <string name="phone_verification_message">An verification code has been sent your mobile phone</string>
     <string name="forget_password">Forget Password</string>
     <string name="forget_password_description">Please input your email to verify and reset password</string>
-    <string name="send">send</string>
+    <string name="send">Send</string>
     <string name="OTP_verification">OTP Verification</string>
     <string name="OTP">OTP</string>
     <string name="OTP_description">Please enter your one-time password (OTP) to verify your account</string>
