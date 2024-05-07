@@ -55,6 +55,7 @@ class SignIn : AppCompatActivity() {
                         ).show()
                         val intent = Intent(this@SignIn, HomeActivity::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -82,8 +83,9 @@ class SignIn : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-           // val intent = Intent(this@SignIn, HomeActivity::class.java)
-          //  startActivity(intent)
+            val intent = Intent(this@SignIn, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 

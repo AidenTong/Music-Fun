@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_user">Me</string>
     <string name="welcome">Welcome</string>
     <string name="app_description">Explore the latest hits on Music Fun!</string>
     <string name="disclaimer">Disclaimer</string>
