@@ -45,72 +45,90 @@ class UserFragment : Fragment() {
 
         return root
     }
+
+    private  fun upload(result: Uri){
+        var progressDialog = ProgressDialog(requireContext())
+        progressDialog.setTitle("Avatar uploading")
+        progressDialog.show();
+        Log.d("jcy-TAG", "upload result  : $result")
+        // var storage = Firebase.storage
+        // Get a non-default Storage bucket
+        val storage = com.google.firebase.Firebase.storage("gs://comp4521-f7de0.appspot.com")
+        var storageRef = storage.reference
+        // var file = Uri.fromFile(File("path/to/images/rivers.jpg"))
+        val riversRef = storageRef.child("images/${result.lastPathSegment}")
+        var  uploadTask = riversRef.putFile(result)
+
+// Register observers to listen for when the download is done or if it fails
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+            progressDialog.dismiss();
+            Toast.makeText(requireContext(), "upload failed ${it}", Toast.LENGTH_LONG).show()
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            riversRef.downloadUrl.addOnSuccessListener {downloadUrl->
+                // Got the download URL for 'users/me/profile.png'
+                Log.d("jcy-TAG", "downloadUrl  : $downloadUrl")
+                val profileUpdates = UserProfileChangeRequest.Builder()
+                    .setPhotoUri(downloadUrl)
+                    .build()
+
+                auth.currentUser?.updateProfile(profileUpdates)
+                    ?.addOnCompleteListener(OnCompleteListener<Void?> { task ->
+                        if (task.isSuccessful) {
+                            // 用户信息更新成功
+                            progressDialog.dismiss();
+                            Log.d(TAG, "updateProfile 用户信息更新成功 ")
+                            Toast.makeText(
+                                requireContext(),
+                                "upload Successed",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                            val options = RequestOptions.circleCropTransform()
+                            Glide.with(requireContext())
+                                .load(downloadUrl)
+                                .apply(options)
+                                .into( binding.ivHead)
+                        } else {
+                            // 用户信息更新失败
+                            Log.w(TAG, "updateProfile 用户信息更新失败 ", task.exception)
+                            progressDialog.dismiss();
+                            Toast.makeText(
+                                requireContext(),
+                                "upload failed ${task.exception}",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                        }
+                    })
+            }.addOnFailureListener {
+                // Handle any errors
+                Log.d("jcy-TAG", "downloadUrl Failure : $it")
+                Toast.makeText(requireContext(), "upload failed ${it}", Toast.LENGTH_LONG).show()
+            }
+            //val path = taskSnapshot.metadata?.path
+            // Log.d("jcy-TAG", "path  : $path")
+        }
+    }
+
+    val cropImageLauncher = registerForActivityResult<CropImageResult, PictureResult>(
+        CropImage.instance
+    ) { result: PictureResult? ->
+        Log.d("jcy-TAG","cropImageLauncher result  :$result isSuccess  ${result?.isSuccess}  uri  ${result?.uri} ")
+        if(result!=null&&result.isSuccess){
+            upload(result.uri!!)
+        }
+    }
+
+
     //选取图片
     private val mLauncherAlbum = registerForActivityResult<String, Uri>(
         ActivityResultContracts.GetContent()
     ) { result: Uri? ->
         if(result!=null){
-            var progressDialog = ProgressDialog(requireContext())
-            progressDialog.setTitle("Avatar uploading")
-            progressDialog.show();
-            Log.d("jcy-TAG", "result  : $result")
-            // var storage = Firebase.storage
-            // Get a non-default Storage bucket
-            val storage = com.google.firebase.Firebase.storage("gs://comp4521-f7de0.appspot.com")
-            var storageRef = storage.reference
-            // var file = Uri.fromFile(File("path/to/images/rivers.jpg"))
-            val riversRef = storageRef.child("images/${result.lastPathSegment}")
-            var  uploadTask = riversRef.putFile(result)
-
-// Register observers to listen for when the download is done or if it fails
-            uploadTask.addOnFailureListener {
-                // Handle unsuccessful uploads
-                progressDialog.dismiss();
-                Toast.makeText(requireContext(), "upload failed ${it}", Toast.LENGTH_LONG).show()
-            }.addOnSuccessListener { taskSnapshot ->
-                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                riversRef.downloadUrl.addOnSuccessListener {downloadUrl->
-                    // Got the download URL for 'users/me/profile.png'
-                    Log.d("jcy-TAG", "downloadUrl  : $downloadUrl")
-                    val profileUpdates = UserProfileChangeRequest.Builder()
-                        .setPhotoUri(downloadUrl)
-                        .build()
-
-                    auth.currentUser?.updateProfile(profileUpdates)
-                        ?.addOnCompleteListener(OnCompleteListener<Void?> { task ->
-                            if (task.isSuccessful) {
-                                // 用户信息更新成功
-                                progressDialog.dismiss();
-                                Log.d(TAG, "updateProfile 用户信息更新成功 ")
-                                Toast.makeText(
-                                    requireContext(),
-                                    "upload Successed",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                                val options = RequestOptions.circleCropTransform()
-                                Glide.with(requireContext())
-                                    .load(downloadUrl)
-                                    .apply(options)
-                                    .into( binding.ivHead)
-                            } else {
-                                // 用户信息更新失败
-                                Log.w(TAG, "updateProfile 用户信息更新失败 ", task.exception)
-                                progressDialog.dismiss();
-                                Toast.makeText(
-                                    requireContext(),
-                                    "upload failed ${task.exception}",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                            }
-                        })
-                }.addOnFailureListener {
-                    // Handle any errors
-                    Log.d("jcy-TAG", "downloadUrl Failure : $it")
-                    Toast.makeText(requireContext(), "upload failed ${it}", Toast.LENGTH_LONG).show()
-                }
-                //val path = taskSnapshot.metadata?.path
-               // Log.d("jcy-TAG", "path  : $path")
-            }
+            Log.d("jcy-TAG", "mLauncherAlbum result  : $result")
+            cropImageLauncher.launch( CropImageResult(
+                uri = result,//这里的uri为拍照获取相册选取获得uri
+            ))
         }
 
     }
