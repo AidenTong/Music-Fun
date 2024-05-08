@@ -38,9 +38,11 @@ class SignIn : AppCompatActivity() {
             var password = binding.editTextTextPassword.text.toString()
             if (email.isNullOrEmpty()) {
                 Toast.makeText(this, "Please Input Email", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
             if (password.isNullOrEmpty()) {
                 Toast.makeText(this, "Please Input Password", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->

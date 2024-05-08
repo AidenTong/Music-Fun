@@ -24,23 +24,12 @@ class SignUp : AppCompatActivity() {
     val TAG = "jcy-SignUp"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val actionBar = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
-        actionBar?.setCustomView(R.layout.actionbar_title)
-        val customView = actionBar?.customView
-        val backButton = customView?.findViewById<ImageButton>(R.id.backButton)
-        backButton?.setOnClickListener {
-            // Handle the click event for the backward button
-            onBackPressedDispatcher.onBackPressed()
-        }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        setSupportActionBar(binding.toolbar)
+        // 设置Navigation Button监听
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
         }
         auth = Firebase.auth
         binding.btnSignUp.setOnClickListener {
@@ -50,15 +39,19 @@ class SignUp : AppCompatActivity() {
             var passwordAgain = binding.editTextTextPasswordAgain.text.toString()
             if (name.isNullOrEmpty()) {
                 Toast.makeText(this, "Please Input Name", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
             if (email.isNullOrEmpty()) {
                 Toast.makeText(this, "Please Input Email", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
             if (password.isNullOrEmpty()) {
                 Toast.makeText(this, "Please Input Password", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
             if (!password.equals(passwordAgain)) {
-                Toast.makeText(this, "Two passwords do not match", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Please make sure the passwords input are the same", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
             Log.d(TAG, "SignUp email $email ")
             Log.d(TAG, "SignUp password $password ")

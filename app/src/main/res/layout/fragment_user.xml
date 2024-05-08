@@ -127,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
+            android:textSize="16sp"
             android:text="Male" />
 
         <RadioButton
@@ -135,6 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
+            android:textSize="16sp"
             android:text="Female" />
 
         <RadioButton
@@ -143,6 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
+            android:textSize="16sp"
             android:text="Others" />
     </RadioGroup>
 

@@ -44,23 +44,12 @@ class ForgetPassword : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityForgetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val actionBar = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
-        actionBar?.setCustomView(R.layout.actionbar_title)
-        val customView = actionBar?.customView
-        val backButton = customView?.findViewById<ImageButton>(R.id.backButton)
-        backButton?.setOnClickListener {
-            // Handle the click event for the backward button
-            onBackPressedDispatcher.onBackPressed()
-        }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        setSupportActionBar(binding.toolbar)
+        // 设置Navigation Button监听
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
         }
         auth = Firebase.auth
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -78,13 +67,15 @@ class ForgetPassword : AppCompatActivity() {
     }
 
     fun send() {
-
         if (isWaiting) {
+            Toast.makeText(this, "It will take $waitTime seconds to resend the verification", Toast.LENGTH_LONG)
+                .show()
             return
         }
         var email = binding.editTextTextEmailAddress.text.toString()
         if (email.isNullOrEmpty()) {
             Toast.makeText(this, "Please Input Email", Toast.LENGTH_LONG).show()
+            return
         }
         isWaiting = true;
         handler.sendEmptyMessageDelayed(0, 1000)
@@ -96,9 +87,10 @@ class ForgetPassword : AppCompatActivity() {
                     Log.d(TAG, "发送密码重置电子邮件成功，这里可以提示用户检查他们的电子邮件")
                     Toast.makeText(
                         this,
-                        "Successfully sent password reset email, please check the email",
+                        "An verification email has been sent to email address.",
                         Toast.LENGTH_LONG
                     ).show()
+                    finish()
 
                 } else {
                     // 发送密码重置电子邮件失败

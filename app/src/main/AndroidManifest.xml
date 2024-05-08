@@ -17,9 +17,11 @@
             android:exported="false" />
         <activity
             android:name=".ui.authentication.ForgetPassword"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.authentication.SignUp"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
