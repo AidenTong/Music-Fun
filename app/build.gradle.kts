@@ -53,6 +53,8 @@ dependencies {
     implementation("androidx.activity:activity:1.8.0")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation( "androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.fragment:fragment-ktx:1.5.6")
     testImplementation("junit:junit:4.13.2")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

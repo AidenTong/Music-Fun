@@ -35,4 +35,9 @@
     <string name="OTP">OTP</string>
     <string name="OTP_description">Please enter your one-time password (OTP) to verify your account</string>
     <string name="resend">Resend OTP</string>
+    <string name="title_music">Music</string>
+    <string name="title_MV">MV</string>
+    <string name="title_me">Me</string>
+    <string name="title_search">Search</string>
+    <string name="title_upload">Upload</string>
 </resources>
