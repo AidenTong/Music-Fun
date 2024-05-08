@@ -52,11 +52,6 @@ class ForgetPassword : AppCompatActivity() {
             finish()
         }
         auth = Firebase.auth
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
         binding.btnResend.setOnClickListener {
             send()
         }

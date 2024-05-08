@@ -70,4 +70,5 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     ksp("com.github.bumptech.glide:ksp:4.16.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 }

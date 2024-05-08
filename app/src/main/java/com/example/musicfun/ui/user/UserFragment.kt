@@ -125,10 +125,11 @@ class UserFragment : Fragment() {
         ActivityResultContracts.GetContent()
     ) { result: Uri? ->
         if(result!=null){
+            upload(result)
             Log.d("jcy-TAG", "mLauncherAlbum result  : $result")
-            cropImageLauncher.launch( CropImageResult(
+           /* cropImageLauncher.launch( CropImageResult(
                 uri = result,//这里的uri为拍照获取相册选取获得uri
-            ))
+            ))*/
         }
 
     }
