@@ -58,7 +58,6 @@ class ForgetPassword : AppCompatActivity() {
             insets
         }
         binding.btnResend.setOnClickListener {
-            handler.sendEmptyMessageDelayed(0, 1000)
             send()
         }
         binding.btnSend.setOnClickListener {
