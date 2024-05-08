@@ -94,6 +94,10 @@ class SignIn : AppCompatActivity() {
         binding.btnSignInWithGoogle.setOnClickListener {
             signIn()
         }
+        binding.btnSignInWithPhoneNumber.setOnClickListener {
+            val intent = Intent(this@SignIn, SingnInWithPhone::class.java)
+            startActivity(intent)
+        }
     }
 
     public override fun onStart() {

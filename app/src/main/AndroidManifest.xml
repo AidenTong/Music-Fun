@@ -30,6 +30,10 @@
             android:theme="@style/Theme.MusicFun.NoTitleBar"
             android:exported="false" />
         <activity
+            android:name=".ui.authentication.SingnInWithPhone"
+            android:theme="@style/Theme.MusicFun.NoTitleBar"
+            android:exported="false" />
+        <activity
             android:name=".ui.authentication.SignUp"
             android:theme="@style/Theme.MusicFun.NoTitleBar"
             android:exported="false" />
