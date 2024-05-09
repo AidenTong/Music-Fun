@@ -17,7 +17,7 @@ class CategoryAdapter (private val categoryList : List<CategoryModel>) :
         //bind the data with views
         fun bindData(category : CategoryModel){
             binding.nameTextView.text = category.name
-            Glide.with(binding.coverImageView).load(category.picture)
+            Glide.with(binding.coverImageView).load(category.coverUrl)
                 .apply(
                     RequestOptions().transform(RoundedCorners(32))
                 )

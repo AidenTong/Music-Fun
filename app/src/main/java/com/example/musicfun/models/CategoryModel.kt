@@ -2,7 +2,8 @@ package com.example.musicfun.models
 
 data class CategoryModel(
     val name : String,
-    val picture : Int,
+    val coverUrl: String,
+    val songs : List<String>,
 ) {
-    constructor() : this("",0)
+    constructor() : this("", "", listOf())
 }

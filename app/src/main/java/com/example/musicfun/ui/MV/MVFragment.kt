@@ -20,6 +20,7 @@ import com.example.musicfun.itemDecoration.PageIndicatorDecoration
 import com.example.musicfun.layoutManager.ScaleCenterItemLayoutManager
 import com.example.musicfun.models.CategoryModel
 import com.example.musicfun.models.SongModel
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.math.abs
 
 class MVFragment : Fragment() {
@@ -41,12 +42,6 @@ class MVFragment : Fragment() {
         SongModel("", "Love Story", R.drawable.love_story, "" ),
 
     )
-    private val categoryList: List<CategoryModel> = listOf(
-        CategoryModel("English", R.drawable.english ),
-        CategoryModel("Mandarin",  R.drawable.mandarin),
-        CategoryModel("K-pop",  R.drawable.k_pop),
-        CategoryModel("Canto-pop",  R.drawable.conto_pop),
-    )
     private val newSongsList: List<SongModel> = listOf(
         SongModel("", "Love Story", R.drawable.english, "" ),
         SongModel("", "Love Story", R.drawable.english, "" )
@@ -67,11 +62,18 @@ class MVFragment : Fragment() {
             textView.text = it
         }
         setupPopularSongRecyclerView(songList)
-        setupCategoryRecyclerView(categoryList)
+        getCategories()
         setupNewSongRecyclerView(newSongsList)
         return root
     }
 
+    fun getCategories() {
+        FirebaseFirestore.getInstance().collection("category")
+            .get().addOnSuccessListener {
+                val categoryList = it.toObjects(CategoryModel::class.java)
+                setupCategoryRecyclerView(categoryList)
+            }
+    }
     fun setupPopularSongRecyclerView(songList: List<SongModel>){
         popularSongAdapter = PopularSongAdapter(songList)
         binding.popularSongsRecyclerView.layoutManager = ScaleCenterItemLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
