@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/item_lin_ed"
+    >
+    <EditText
+        android:id="@+id/item_phone"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:paddingHorizontal="10dp"
+        android:hint="enter phone number"
+        android:background="@drawable/edit_user_background"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:background="@drawable/rounded_blue_text_background"
+        android:paddingHorizontal="24dp"
+        android:text="Send Code"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+    <EditText
+        android:id="@+id/item_code"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:paddingHorizontal="10dp"
+        android:hint="enter sms code"
+        android:background="@drawable/edit_user_background"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        />
+</LinearLayout>

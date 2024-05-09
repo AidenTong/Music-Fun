@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_user">Me</string>
     <string name="welcome">Welcome</string>
     <string name="app_description">Explore the latest hits on Music Fun!</string>
     <string name="disclaimer">Disclaimer</string>
@@ -30,7 +31,7 @@
     <string name="phone_verification_message">An verification code has been sent your mobile phone</string>
     <string name="forget_password">Forget Password</string>
     <string name="forget_password_description">Please input your email to verify and reset password</string>
-    <string name="send">send</string>
+    <string name="send">Send</string>
     <string name="OTP_verification">OTP Verification</string>
     <string name="OTP">OTP</string>
     <string name="OTP_description">Please enter your one-time password (OTP) to verify your account</string>

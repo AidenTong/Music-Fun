@@ -23,9 +23,8 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_search" />
     <fragment
-        android:id="@+id/navigation_me"
-        android:name="com.example.musicfun.ui.me.MeFragment"
-        android:label="@string/title_me"
-        tools:layout="@layout/fragment_me" />
-
+        android:id="@+id/navigation_user"
+        android:name="com.example.musicfun.ui.user.UserFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_user" />
 </navigation>

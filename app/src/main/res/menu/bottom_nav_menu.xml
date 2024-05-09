@@ -27,4 +27,9 @@
 
 
 
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/svg_user"
+        android:title="@string/title_user" />
+
 </menu>
