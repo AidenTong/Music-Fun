@@ -13,11 +13,6 @@ import com.example.musicfun.databinding.PopularSongsRecyclerRowBinding
 import com.example.musicfun.models.SongModel
 
 
-//import com.google.firebase.firestore.FirebaseFirestore
-//import np.com.bimalkafle.musicstream.SongsListActivity
-//import np.com.bimalkafle.musicstream.databinding.SongListItemRecyclerRowBinding
-//import np.com.bimalkafle.musicstream.models.SongModel
-
 class PopularSongAdapter(private val songIdList : List<SongModel>) :
     RecyclerView.Adapter<PopularSongAdapter.MyViewHolder>() {
 
