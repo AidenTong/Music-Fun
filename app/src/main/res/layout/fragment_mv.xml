@@ -7,7 +7,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.MV.MVFragment">
 
     <ScrollView
         android:layout_width="match_parent"
