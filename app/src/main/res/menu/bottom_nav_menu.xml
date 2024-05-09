@@ -20,10 +20,10 @@
         android:icon="@drawable/upload"
         android:title="@string/title_upload" />
 
-    <item
-        android:id="@+id/navigation_me"
-        android:icon="@drawable/me"
-        android:title="@string/title_me" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_me"-->
+<!--        android:icon="@drawable/me"-->
+<!--        android:title="@string/title_me" />-->
 
 
 
