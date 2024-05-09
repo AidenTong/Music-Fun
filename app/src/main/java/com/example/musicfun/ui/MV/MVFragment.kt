@@ -1,4 +1,4 @@
-package com.example.musicfun.ui.home
+package com.example.musicfun.ui.MV
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,16 +15,16 @@ import com.example.musicfun.SnapHelperOneByOne
 import com.example.musicfun.adapter.CategoryAdapter
 import com.example.musicfun.adapter.NewSongAdapter
 import com.example.musicfun.adapter.PopularSongAdapter
-import com.example.musicfun.databinding.FragmentHomeBinding
+import com.example.musicfun.databinding.FragmentMvBinding
 import com.example.musicfun.itemDecoration.PageIndicatorDecoration
 import com.example.musicfun.layoutManager.ScaleCenterItemLayoutManager
 import com.example.musicfun.models.CategoryModel
 import com.example.musicfun.models.SongModel
 import kotlin.math.abs
 
-class HomeFragment : Fragment() {
+class MVFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentMvBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var popularSongAdapter: PopularSongAdapter
     private lateinit var newSongAdapter: NewSongAdapter
     private val songList: List<SongModel> = listOf(
-        SongModel("", "Love Story", R.drawable.love_story, "" ),
+        SongModel("", "Love Story - Taylor Swift", R.drawable.love_story, "" ),
         SongModel("", "Love Story", R.drawable.love_story, "" ),
         SongModel("", "Love Story", R.drawable.love_story, "" ),
         SongModel("", "Love Story", R.drawable.love_story, "" ),
@@ -57,9 +57,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(MVViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentMvBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome

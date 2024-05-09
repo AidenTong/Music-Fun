@@ -2,19 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:id="@+id/navigation_MV"
+        android:icon="@drawable/baseline_music_video_24"
+        android:title="@string/title_MV" />
+    <item
+        android:id="@+id/navigation_music"
+        android:icon="@drawable/baseline_library_music_24"
+        android:title="@string/title_music" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/search"
+        android:title="@string/title_search" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_upload"
+        android:icon="@drawable/upload"
+        android:title="@string/title_upload" />
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_me"-->
+<!--        android:icon="@drawable/me"-->
+<!--        android:title="@string/title_me" />-->
+
+
 
     <item
         android:id="@+id/navigation_user"
