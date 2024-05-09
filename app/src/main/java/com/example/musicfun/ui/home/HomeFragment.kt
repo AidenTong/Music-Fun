@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var popularSongAdapter: PopularSongAdapter
     private lateinit var newSongAdapter: NewSongAdapter
     private val songList: List<SongModel> = listOf(
-        SongModel("", "Love Story", R.drawable.love_story, "" ),
+        SongModel("", "Love Story - Taylor Swift", R.drawable.love_story, "" ),
         SongModel("", "Love Story", R.drawable.love_story, "" ),
         SongModel("", "Love Story", R.drawable.love_story, "" ),
         SongModel("", "Love Story", R.drawable.love_story, "" ),
