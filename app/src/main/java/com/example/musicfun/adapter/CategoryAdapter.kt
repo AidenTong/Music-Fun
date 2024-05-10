@@ -1,5 +1,6 @@
 package com.example.musicfun.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.musicfun.databinding.CategoryItemRecyclerRowBinding
 import com.example.musicfun.models.CategoryModel
+import com.example.musicfun.ui.MV.SongListActivity
 
 class CategoryAdapter (private val categoryList : List<CategoryModel>) :
     RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
@@ -24,11 +26,11 @@ class CategoryAdapter (private val categoryList : List<CategoryModel>) :
                 .into(binding.coverImageView)
 
             //Start SongsList Activity
-//            val context = binding.root.context
-//            binding.root.setOnClickListener {
-//                SongsListActivity.category = category
-//                context.startActivity(Intent(context,SongsListActivity::class.java))
-//            }
+            val context = binding.root.context
+            binding.root.setOnClickListener {
+                SongListActivity.category = category
+                context.startActivity(Intent(context,SongListActivity::class.java))
+            }
 
         }
     }
