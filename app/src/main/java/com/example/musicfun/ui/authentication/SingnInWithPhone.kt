@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Message
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.musicfun.HomeActivity
 import com.example.musicfun.R
 import com.example.musicfun.databinding.ActivityForgetPasswordBinding
 import com.example.musicfun.databinding.ActivityPhoneSignInBinding
@@ -62,6 +64,7 @@ class SingnInWithPhone : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         auth = Firebase.auth
+//        val mobile = findViewById<EditText>(binding.)
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
@@ -72,7 +75,9 @@ class SingnInWithPhone : AppCompatActivity() {
 
                 // Save verification ID and resending token so we can use them later
                 val intent = Intent(this@SingnInWithPhone, OTP::class.java)
-                intent.putExtra("verificationId", verificationId)
+                intent.putExtra("OTP", verificationId)
+                intent.putExtra("phoneNumber",binding.editTextTextPhone.text.toString() )
+                intent.putExtra("token",token)
                 startActivity(intent)
             }
 
@@ -140,8 +145,6 @@ class SingnInWithPhone : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
-
                     val user = task.result?.user
                 } else {
                     // Sign in failed, display a message and update the UI
@@ -162,8 +165,14 @@ class SingnInWithPhone : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
-
+                    Toast.makeText(
+                        baseContext,
+                        "signInWithEmail:success",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    val intent = Intent(this@SingnInWithPhone, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
                     val user = task.result?.user
                 } else {
                     // Sign in failed, display a message and update the UI
