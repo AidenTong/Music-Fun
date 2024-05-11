@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.musicfun.R
 import com.example.musicfun.models.MusicModel
 import com.example.musicfun.databinding.MusicItemRecyclerRowBinding
@@ -25,8 +26,13 @@ class MusicAdapter(private val musicList : List<MusicModel>): RecyclerView.Adapt
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = musicList[position]
         holder.txv_title.text = currentItem.title
-        holder.cover_image.setImageResource(currentItem.coverPicture)
+//        holder.cover_image.setImageResource(currentItem.coverPicture)
         holder.txv_author.text = currentItem.author
+        Glide.with(holder.itemView.context)
+            .load(currentItem.coverUrl)
+            .placeholder(R.drawable.music_placeholder) // Replace with your placeholder image
+            .error(R.drawable.google_icon) // Replace with your error image
+            .into(holder.cover_image)
 
     }
 
