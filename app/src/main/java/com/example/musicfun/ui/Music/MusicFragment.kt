@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.musicfun.databinding.FragmentMusicBinding
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.musicfun.MyExoplayer
 import com.example.musicfun.R
 import com.example.musicfun.adapter.MusicAdapter
 import com.example.musicfun.models.MusicModel
@@ -37,6 +38,7 @@ class MusicFragment : Fragment() {
 ////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
 //    )
 
+    private lateinit var musicList: List<MusicModel>
     private lateinit var musicAdapter: MusicAdapter
 
     override fun onCreateView(
@@ -45,28 +47,49 @@ class MusicFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMusicBinding.inflate(inflater, container, false)
-        getMusicFromFirebase()
         return binding.root
     }
 
-    fun getMusicFromFirebase(){
-        FirebaseFirestore.getInstance().collection("songs")
-            .get().addOnSuccessListener {
-                val musicList = it.toObjects(MusicModel::class.java)
-                initRecyclerView(musicList)
-            }
-    }
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        initRecyclerView()
+//    fun getMusicFromFirebase(){
+//        FirebaseFirestore.getInstance().collection("songs")
+//            .get().addOnSuccessListener {
+//                musicList = it.toObjects(MusicModel::class.java)
+//                initRecyclerView(musicList)
+//            }
 //    }
+fun getMusicFromFirebase() {
+    FirebaseFirestore.getInstance().collection("songs")
+        .get().addOnSuccessListener { querySnapshot ->
+            val tempMusicList = mutableListOf<MusicModel>()
+            for (document in querySnapshot) {
+                val musicModel = document.toObject(MusicModel::class.java)
+                if (musicModel.MP3.isNotEmpty()) {
+                    tempMusicList.add(musicModel)
+                }
+            }
+            musicList = tempMusicList
+            initRecyclerView(musicList)
+        }
+}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getMusicFromFirebase()
+    }
 
     private fun initRecyclerView(musicList: List<MusicModel>) {
         musicAdapter = MusicAdapter(musicList)
+        musicAdapter.setOnClickListener(object : MusicAdapter.OnClickListener {
+            override fun onClick(position: Int, model: MusicModel) {
+                // Start playing the selected song
+                MyExoplayer.startPlaying(requireContext(), model)
+            }
+        })
         binding.musicRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
         binding.musicRecyclerView?.adapter = musicAdapter;
 
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
