@@ -34,15 +34,6 @@ class MVFragment : Fragment() {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var popularSongAdapter: PopularSongAdapter
     private lateinit var albumAdapter: AlbumAdapter
-    private val songList: List<SongModel> = listOf(
-        SongModel("", "Love Story - Taylor Swift", "", "", "", R.drawable.love_story ),
-        SongModel("", "Love Story - Taylor Swift", "", "", "",  R.drawable.love_story),
-        SongModel("", "Love Story - Taylor Swift", "", "", "", R.drawable.love_story),
-        SongModel("", "Love Story - Taylor Swift", "", "", "",  R.drawable.love_story),
-        SongModel("", "Love Story - Taylor Swift", "", "", "",  R.drawable.love_story ),
-        SongModel("", "Love Story - Taylor Swift", "", "", "", R.drawable.love_story ),
-
-    )
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,16 +45,19 @@ class MVFragment : Fragment() {
         _binding = FragmentMvBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        setupPopularSongRecyclerView(songList)
+        getPopularSongs()
         getCategories()
         getAlbums()
         return root
     }
 
+    fun getPopularSongs() {
+        FirebaseFirestore.getInstance().collection("popular_songs")
+            .get().addOnSuccessListener {
+                val popularSongs = it.toObjects(SongModel::class.java)
+                setupPopularSongRecyclerView(popularSongs)
+            }
+    }
     fun getCategories() {
         FirebaseFirestore.getInstance().collection("category")
             .get().addOnSuccessListener {
