@@ -6,6 +6,7 @@ data class SongModel(
     val author: String,
     val url : String,
     val coverUrl: String,
+    val MP3: String
 ) {
-    constructor() : this("","","","", "")
+    constructor() : this("","","","", "", "")
 }

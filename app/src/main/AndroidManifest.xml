@@ -24,6 +24,9 @@
             android:name=".ui.MV.SongListActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.Upload.UploadActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.authentication.OTP"
             android:theme="@style/Theme.MusicFun.NoTitleBar"
             android:exported="false" />
