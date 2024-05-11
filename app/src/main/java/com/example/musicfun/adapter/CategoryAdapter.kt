@@ -29,6 +29,7 @@ class CategoryAdapter (private val categoryList : List<CategoryModel>) :
             val context = binding.root.context
             binding.root.setOnClickListener {
                 SongListActivity.category = category
+                SongListActivity.type = "category"
                 context.startActivity(Intent(context,SongListActivity::class.java))
             }
 

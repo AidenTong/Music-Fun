@@ -7,8 +7,8 @@
 
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerVertical="true"
         android:scaleType="fitXY"
         android:id="@+id/song_cover_image_view"/>
@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="20sp"
             tools:text="Song name"
             android:textStyle="bold"
             android:id="@+id/song_title_text_view"/>
@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Song subtitle"
+            android:textSize="15sp"
             android:id="@+id/song_subtitle_text_view"/>
 
     </LinearLayout>

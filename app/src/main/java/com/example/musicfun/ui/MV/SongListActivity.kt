@@ -13,12 +13,15 @@ import com.example.musicfun.R
 import com.example.musicfun.adapter.CategoryAdapter
 import com.example.musicfun.adapter.SongListAdapter
 import com.example.musicfun.databinding.ActivitySongListBinding
+import com.example.musicfun.models.AlbumModel
 import com.example.musicfun.models.CategoryModel
 
 class SongListActivity : AppCompatActivity() {
 
     companion object {
         lateinit var category: CategoryModel
+        lateinit var albumList: AlbumModel
+        lateinit var type: String
     }
 
     lateinit var binding: ActivitySongListBinding
@@ -28,18 +31,35 @@ class SongListActivity : AppCompatActivity() {
         binding = ActivitySongListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.nameTextView.text = category.name
-        Glide.with(binding.coverImageView).load(category.headerUrl)
-            .apply(
-                RequestOptions().transform(RoundedCorners(32))
-            )
-            .into(binding.coverImageView)
+        if (type == "category") {
+            binding.nameTextView.text = category.name
+            Glide.with(binding.coverImageView).load(category.headerUrl)
+                .apply(
+                    RequestOptions().transform(RoundedCorners(32))
+                )
+                .into(binding.coverImageView)
 
-        setUpSongListRecyclerView()
+            setUpCategorySongListRecyclerView()
+        } else if (type == "album") {
+            binding.nameTextView.text = albumList.title
+            Glide.with(binding.coverImageView).load(albumList.coverUrl)
+                .apply(
+                    RequestOptions().transform(RoundedCorners(32))
+                )
+                .into(binding.coverImageView)
+
+            setUpAlbumSongListRecyclerView()
+        }
     }
 
-    fun setUpSongListRecyclerView() {
+    fun setUpCategorySongListRecyclerView() {
         songListAdapter = SongListAdapter(category.songs)
+        binding.songsListRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.songsListRecyclerView.adapter = songListAdapter
+    }
+
+    fun setUpAlbumSongListRecyclerView() {
+        songListAdapter = SongListAdapter(albumList.songs)
         binding.songsListRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.songsListRecyclerView.adapter = songListAdapter
     }

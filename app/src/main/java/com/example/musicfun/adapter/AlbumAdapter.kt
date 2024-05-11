@@ -1,5 +1,6 @@
 package com.example.musicfun.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.musicfun.databinding.NewSongsRecyclerRowBinding
 import com.example.musicfun.models.AlbumModel
 import com.example.musicfun.models.SongModel
+import com.example.musicfun.ui.MV.SongListActivity
 
 class AlbumAdapter(private val songIdList : List<AlbumModel>) :
     RecyclerView.Adapter<AlbumAdapter.MyViewHolder>() {
@@ -23,6 +25,13 @@ class AlbumAdapter(private val songIdList : List<AlbumModel>) :
                     RequestOptions().transform(RoundedCorners(32))
                 )
                 .into(binding.coverImageView)
+
+            val context = binding.root.context
+            binding.root.setOnClickListener {
+                SongListActivity.albumList = song
+                SongListActivity.type = "album"
+                context.startActivity(Intent(context, SongListActivity::class.java))
+            }
         }
     }
 
