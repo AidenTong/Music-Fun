@@ -8,31 +8,54 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.musicfun.databinding.FragmentMusicBinding
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.musicfun.R
+import com.example.musicfun.adapter.MusicAdapter
+import com.example.musicfun.models.MusicModel
 
 class MusicFragment : Fragment() {
 
     private var _binding: FragmentMusicBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private val musicList = listOf(
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+    )
+
+    private lateinit var musicAdapter: MusicAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(MusicViewModel::class.java)
-
         _binding = FragmentMusicBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        musicAdapter = MusicAdapter(musicList)
+        binding.musicRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
+        binding.musicRecyclerView?.adapter = musicAdapter;
     }
 
     override fun onDestroyView() {

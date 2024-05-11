@@ -7,7 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.musicfun.R
+import com.example.musicfun.adapter.MusicAdapter
+import com.example.musicfun.databinding.FragmentMusicBinding
 import com.example.musicfun.databinding.FragmentSearchBinding
+import com.example.musicfun.models.MusicModel
 
 class SearchFragment : Fragment() {
 
@@ -19,22 +24,42 @@ class SearchFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val musicList = listOf(
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
+        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
+    )
+
+    private lateinit var musicAdapter: MusicAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(SearchViewModel::class.java)
-
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        musicAdapter = MusicAdapter(musicList)
+        binding.musicRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.musicRecyclerView.adapter = musicAdapter;
     }
 
     override fun onDestroyView() {
