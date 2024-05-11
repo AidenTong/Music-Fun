@@ -1,6 +1,7 @@
 package com.example.musicfun.adapter
 
 import android.R
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.musicfun.databinding.PopularSongsRecyclerRowBinding
 import com.example.musicfun.models.SongModel
+import com.example.musicfun.ui.MV.VideoActivity
 
 
 class PopularSongAdapter(private val songIdList : List<SongModel>) :
@@ -24,7 +26,10 @@ class PopularSongAdapter(private val songIdList : List<SongModel>) :
                     RequestOptions().transform(RoundedCorners(32))
                 )
                 .into(binding.coverImageView)
-
+            binding.root.setOnClickListener{
+                VideoActivity.uri = song.url
+                it.context.startActivity(Intent(it.context, VideoActivity::class.java))
+            }
         }
     }
 
