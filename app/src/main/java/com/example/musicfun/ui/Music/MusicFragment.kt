@@ -1,5 +1,6 @@
 package com.example.musicfun.ui.Music
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,24 +21,6 @@ class MusicFragment : Fragment() {
 
     private var _binding: FragmentMusicBinding? = null
     private val binding get() = _binding!!
-
-//    private val musicList = listOf(
-//        MusicModel("", "Love Story", "Taylor Swift", "R.drawable.love_story", "", ""),
-////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
-////        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
-////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
-////        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
-////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
-////        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
-////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
-////        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
-////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
-////        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
-////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
-////        MusicModel("", "Love Story", "Taylor Swift", R.drawable.love_story, "", ""),
-////        MusicModel("", "Lol", "Jay Chou", R.drawable.mandarin, "", "" ),
-//    )
-
     private lateinit var musicList: List<MusicModel>
     private lateinit var musicAdapter: MusicAdapter
 
@@ -50,13 +33,6 @@ class MusicFragment : Fragment() {
         return binding.root
     }
 
-//    fun getMusicFromFirebase(){
-//        FirebaseFirestore.getInstance().collection("songs")
-//            .get().addOnSuccessListener {
-//                musicList = it.toObjects(MusicModel::class.java)
-//                initRecyclerView(musicList)
-//            }
-//    }
 fun getMusicFromFirebase() {
     FirebaseFirestore.getInstance().collection("songs")
         .get().addOnSuccessListener { querySnapshot ->
@@ -82,6 +58,8 @@ fun getMusicFromFirebase() {
             override fun onClick(position: Int, model: MusicModel) {
                 // Start playing the selected song
                 MyExoplayer.startPlaying(requireContext(), model)
+                val intent = Intent(requireContext(), PlayerActivity::class.java)
+                startActivity(intent)
             }
         })
         binding.musicRecyclerView?.layoutManager = LinearLayoutManager(requireContext())

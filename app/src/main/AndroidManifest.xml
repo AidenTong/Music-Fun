@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Devices running Android 12L (API level 32) or lower  -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
 
-    <!-- Devices running Android 13 (API level 33) or higher -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Devices running Android 12L (API level 32) or lower -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" /> <!-- Devices running Android 13 (API level 33) or higher -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
-
-    <!-- To handle the reselection within the app on Android 14 (API level 34) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" /> <!-- To handle the reselection within the app on Android 14 (API level 34) -->
     <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
 
     <application
@@ -23,20 +21,23 @@
         android:theme="@style/Theme.MusicFun"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Music.PlayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.authentication.OTP"
             android:exported="false" />
         <activity
             android:name=".ui.authentication.ForgetPassword"
-            android:theme="@style/Theme.MusicFun.NoTitleBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MusicFun.NoTitleBar" />
         <activity
             android:name=".ui.authentication.SingnInWithPhone"
-            android:theme="@style/Theme.MusicFun.NoTitleBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MusicFun.NoTitleBar" />
         <activity
             android:name=".ui.authentication.SignUp"
-            android:theme="@style/Theme.MusicFun.NoTitleBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MusicFun.NoTitleBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -47,13 +48,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".HomeActivity">
-        </activity>
+        <activity android:name=".HomeActivity"></activity>
         <activity
             android:name=".ui.authentication.SignIn"
-            android:theme="@style/Theme.MusicFun.NoTitleBar"
-            android:label="Music Fun"  />
+            android:label="Music Fun"
+            android:theme="@style/Theme.MusicFun.NoTitleBar" />
     </application>
 
 </manifest>

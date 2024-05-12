@@ -13,7 +13,7 @@ import com.example.musicfun.models.MusicModel
 import com.example.musicfun.databinding.MusicItemRecyclerRowBinding
 
 
-class MusicAdapter(private val musicList : List<MusicModel>): RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
+class MusicAdapter(private var musicList : List<MusicModel>): RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
     private var onClickListener: OnClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -58,6 +58,10 @@ class MusicAdapter(private val musicList : List<MusicModel>): RecyclerView.Adapt
         val cover_image = binding.coverImageView
         val txv_title = binding.txvTitle
         val txv_author = binding.txvAuthor
+    }
+    fun setFilterList(musicList: List<MusicModel>){
+        this.musicList = musicList
+        notifyDataSetChanged()
     }
 
 }

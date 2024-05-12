@@ -10,6 +10,9 @@ object MyExoplayer {
     private var exoPlayer: ExoPlayer? = null
     private var currentMusic: MusicModel?= null
 
+    fun getCurrentMusic(): MusicModel?{
+        return currentMusic
+    }
     fun getInstance() : ExoPlayer?{
         return exoPlayer
     }
@@ -18,13 +21,17 @@ object MyExoplayer {
         if(exoPlayer==null){
             exoPlayer = ExoPlayer.Builder(context).build()
         }
-        currentMusic = music
-        currentMusic?.MP3?.apply {
-            val mediaItem = MediaItem.fromUri(this)
-            exoPlayer?.setMediaItem(mediaItem)
-            exoPlayer?.prepare()
-            exoPlayer?.play()
+
+        if(currentMusic!= music){
+            currentMusic = music
+            currentMusic?.MP3?.apply {
+                val mediaItem = MediaItem.fromUri(this)
+                exoPlayer?.setMediaItem(mediaItem)
+                exoPlayer?.prepare()
+                exoPlayer?.play()
+            }
         }
+
     }
 
 
