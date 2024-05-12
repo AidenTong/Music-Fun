@@ -1,6 +1,7 @@
 package com.example.musicfun.adapter
 
 import android.R
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
@@ -11,12 +12,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.musicfun.databinding.PopularSongsRecyclerRowBinding
 import com.example.musicfun.models.SongModel
+import com.example.musicfun.ui.MV.VideoActivity
 
-
-//import com.google.firebase.firestore.FirebaseFirestore
-//import np.com.bimalkafle.musicstream.SongsListActivity
-//import np.com.bimalkafle.musicstream.databinding.SongListItemRecyclerRowBinding
-//import np.com.bimalkafle.musicstream.models.SongModel
 
 class PopularSongAdapter(private val songIdList : List<SongModel>) :
     RecyclerView.Adapter<PopularSongAdapter.MyViewHolder>() {
@@ -24,29 +21,15 @@ class PopularSongAdapter(private val songIdList : List<SongModel>) :
     class MyViewHolder(private val binding: PopularSongsRecyclerRowBinding) : RecyclerView.ViewHolder(binding.root){
         //bind data with view
         fun bindData(song: SongModel){
-            binding.nameTextView.text = song.title
-            Glide.with(binding.coverImageView).load(song.coverPicture)
+            Glide.with(binding.coverImageView).load(song.coverUrl)
                 .apply(
                     RequestOptions().transform(RoundedCorners(32))
                 )
                 .into(binding.coverImageView)
-
-//
-//            FirebaseFirestore.getInstance().collection("songs")
-//                .document(songId).get()
-//                .addOnSuccessListener {
-//                    val song = it.toObject(SongModel::class.java)
-//                    song?.apply {
-//                        binding.songTitleTextView.text = title
-//                        binding.songSubtitleTextView.text = subtitle
-//                        Glide.with(binding.songCoverImageView).load(coverUrl)
-//                            .apply(
-//                                RequestOptions().transform(RoundedCorners(32))
-//                            )
-//                            .into(binding.songCoverImageView)
-//                    }
-//                }
-
+            binding.root.setOnClickListener{
+                VideoActivity.uri = song.url
+                it.context.startActivity(Intent(it.context, VideoActivity::class.java))
+            }
         }
     }
 

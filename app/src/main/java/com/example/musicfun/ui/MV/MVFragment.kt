@@ -12,14 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicfun.itemDecoration.GridSpaceItemDecoration
 import com.example.musicfun.R
 import com.example.musicfun.SnapHelperOneByOne
+import com.example.musicfun.adapter.AlbumAdapter
 import com.example.musicfun.adapter.CategoryAdapter
-import com.example.musicfun.adapter.NewSongAdapter
 import com.example.musicfun.adapter.PopularSongAdapter
 import com.example.musicfun.databinding.FragmentMvBinding
 import com.example.musicfun.itemDecoration.PageIndicatorDecoration
 import com.example.musicfun.layoutManager.ScaleCenterItemLayoutManager
+import com.example.musicfun.models.AlbumModel
 import com.example.musicfun.models.CategoryModel
 import com.example.musicfun.models.SongModel
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.math.abs
 
 class MVFragment : Fragment() {
@@ -31,26 +33,7 @@ class MVFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var popularSongAdapter: PopularSongAdapter
-    private lateinit var newSongAdapter: NewSongAdapter
-    private val songList: List<SongModel> = listOf(
-        SongModel("", "Love Story - Taylor Swift", R.drawable.love_story, "" ),
-        SongModel("", "Love Story", R.drawable.love_story, "" ),
-        SongModel("", "Love Story", R.drawable.love_story, "" ),
-        SongModel("", "Love Story", R.drawable.love_story, "" ),
-        SongModel("", "Love Story", R.drawable.love_story, "" ),
-        SongModel("", "Love Story", R.drawable.love_story, "" ),
-
-    )
-    private val categoryList: List<CategoryModel> = listOf(
-        CategoryModel("English", R.drawable.english ),
-        CategoryModel("Mandarin",  R.drawable.mandarin),
-        CategoryModel("K-pop",  R.drawable.k_pop),
-        CategoryModel("Canto-pop",  R.drawable.conto_pop),
-    )
-    private val newSongsList: List<SongModel> = listOf(
-        SongModel("", "Love Story", R.drawable.english, "" ),
-        SongModel("", "Love Story", R.drawable.english, "" )
-    )
+    private lateinit var albumAdapter: AlbumAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,16 +45,34 @@ class MVFragment : Fragment() {
         _binding = FragmentMvBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        setupPopularSongRecyclerView(songList)
-        setupCategoryRecyclerView(categoryList)
-        setupNewSongRecyclerView(newSongsList)
+        getPopularSongs()
+        getCategories()
+        getAlbums()
         return root
     }
 
+    fun getPopularSongs() {
+        FirebaseFirestore.getInstance().collection("popular_songs")
+            .get().addOnSuccessListener {
+                val popularSongs = it.toObjects(SongModel::class.java)
+                setupPopularSongRecyclerView(popularSongs)
+            }
+    }
+    fun getCategories() {
+        FirebaseFirestore.getInstance().collection("category")
+            .get().addOnSuccessListener {
+                val categoryList = it.toObjects(CategoryModel::class.java)
+                setupCategoryRecyclerView(categoryList)
+            }
+    }
+
+    fun getAlbums() {
+        FirebaseFirestore.getInstance().collection("new_albums")
+            .get().addOnSuccessListener {
+                val albumList = it.toObjects(AlbumModel::class.java)
+                setupAlbumRecyclerView(albumList)
+            }
+    }
     fun setupPopularSongRecyclerView(songList: List<SongModel>){
         popularSongAdapter = PopularSongAdapter(songList)
         binding.popularSongsRecyclerView.layoutManager = ScaleCenterItemLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
@@ -87,10 +88,10 @@ class MVFragment : Fragment() {
         binding.categoriesRecyclerView.adapter = categoryAdapter
     }
 
-    fun setupNewSongRecyclerView(newSongList : List<SongModel>){
-        newSongAdapter = NewSongAdapter(newSongList)
+    fun setupAlbumRecyclerView(albumList : List<AlbumModel>){
+        albumAdapter = AlbumAdapter(albumList)
         binding.newSongsRecyclerView.layoutManager = GridLayoutManager(context, 2)
-        binding.newSongsRecyclerView.adapter = newSongAdapter
+        binding.newSongsRecyclerView.adapter = albumAdapter
         binding.newSongsRecyclerView.addItemDecoration(
             GridSpaceItemDecoration(2, getResources().getDimensionPixelSize(
             com.google.android.material.R.dimen.mtrl_card_spacing), true)

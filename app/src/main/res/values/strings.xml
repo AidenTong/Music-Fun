@@ -41,4 +41,8 @@
     <string name="title_me">Me</string>
     <string name="title_search">Search</string>
     <string name="title_upload">Upload</string>
+    <string name="input_field_for_verification_code">Input field for verification code</string>
+    <string name="resend_otp">RESEND OTP</string>
+    <string name="title_profile">Profile</string>
+    <string name="didn_t_receive_otp_code">Didn\'t receive OTP code?</string>
 </resources>
