@@ -26,14 +26,12 @@ import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.storage.StorageReference
 import kotlin.math.roundToInt
 
-
 class UploadActivity : AppCompatActivity() {
     lateinit var binding: ActivityUploadBinding
     lateinit var songCollection: CollectionReference
     lateinit var uri: Uri
     lateinit var storage : StorageReference
     private val audio = 0
-    private var songCount = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadBinding.inflate(layoutInflater)
