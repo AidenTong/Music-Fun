@@ -3,9 +3,11 @@ package com.example.musicfun.ui.Search
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -55,22 +57,23 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val searchView: SearchView? = view.findViewById(R.id.searchView)
         getMusicFromFirebase()
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Handle search query submission here
+                return false
+            }
 
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                // Handle search query submission here
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                // Handle search query text changes here
-//                filterList(newText)
-//                return true
-//            }
-//        })
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Handle search query text changes here
+                filterList(newText)
+                return true
+            }
+        })
     }
+
+
+
 
     private fun filterList(query: String?){
         if(query!=null) {
