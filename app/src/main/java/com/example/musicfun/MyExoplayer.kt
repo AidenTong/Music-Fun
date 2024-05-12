@@ -24,7 +24,7 @@ object MyExoplayer {
 
         if(currentMusic!= music){
             currentMusic = music
-            currentMusic?.MP3?.apply {
+            currentMusic?.mp3?.apply {
                 val mediaItem = MediaItem.fromUri(this)
                 exoPlayer?.setMediaItem(mediaItem)
                 exoPlayer?.prepare()

@@ -39,7 +39,7 @@ fun getMusicFromFirebase() {
             val tempMusicList = mutableListOf<MusicModel>()
             for (document in querySnapshot) {
                 val musicModel = document.toObject(MusicModel::class.java)
-                if (musicModel.MP3.isNotEmpty()) {
+                if (musicModel.mp3.isNotEmpty()) {
                     tempMusicList.add(musicModel)
                 }
             }
